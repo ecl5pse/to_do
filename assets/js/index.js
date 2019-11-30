@@ -1,5 +1,5 @@
 'use strict';
-const tasks = [];
+const arr = [];
 
 const taskInput = document.getElementById('taskInput');
 
@@ -16,7 +16,7 @@ createTaskButtonElem.addEventListener('click',onCreateTaskButtonClick);
 function onCreateTaskButtonClick(event) {
 
     createTask(event);
-};
+}
 
 
 
@@ -24,10 +24,10 @@ function onCreateTaskButtonClick(event) {
 function createTask(event) {
     const {value} = taskInput;
     if (value) {
-        tasks.push(value);
-        taskList.append(
+        arr.push(value);
+        taskList.prepend(
             createTaskListItem({
-                id: tasks.length - 1,
+                id:arr.length - 1,
                 value: taskInput.value[0].toUpperCase() + taskInput.value.slice(1)
             })
         );
