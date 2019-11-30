@@ -1,4 +1,5 @@
 'use strict';
+const tasks = [];
 
 const taskInput = document.getElementById('taskInput');
 
@@ -8,42 +9,39 @@ const taskList = document.getElementById('taskList');
 
 
 
+createTaskButtonElem.addEventListener('click',onCreateTaskButtonClick);
+
+
+
+function onCreateTaskButtonClick(event) {
+
+    createTask(event);
+};
 
 
 
 
-
-
-
-
-
-createTaskButtonElem.addEventListener('click',onCreateTaskButtonClickHandler);
-
-
-
-
-
-
-
-function onCreateTaskButtonClickHandler(even) {
-
-    let arrInput = [taskInput.value];
-    taskList.appendChild(create())
-
-
-}
-
-function create(arrInput) {
-
-    arrInput.toString();
-    const viewTable = document.createElement('span')
-    viewTable.innerText = arrInput;
-
-    return viewTable;
-
+function createTask(event) {
+    const {value} = taskInput;
+    if (value) {
+        tasks.push(value);
+        taskList.append(
+            createTaskListItem({
+                id: tasks.length - 1,
+                value: taskInput.value[0].toUpperCase() + taskInput.value.slice(1)
+            })
+        );
+        taskInput.value = "";
+    }
 }
 
 
 
+function createTaskListItem(task) {
+    const taskListItem = document.createElement("li");
+    taskListItem.classList.add('task');
+    taskListItem.innerText = task.value;
 
 
+    return taskListItem;
+}
